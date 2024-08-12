@@ -78,14 +78,29 @@ const styles = {
     width: "100%",
   },
   selectIcon: {
-    color: '#d5b263',
+    color: "#d5b263",
   },
   menuItem: {
     color: "#d5b263",
     backgroundColor: "#1e2a36",
-    '&:hover': {
+    "&:hover": {
       backgroundColor: "#3c4a60",
     },
+  },
+  homeButton: {
+    backgroundColor: "#3c4a60",
+    width: "100px",
+    padding: "10px",
+    borderRadius: "5px",
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+    cursor: "pointer",
+    transition: "background-color 0.3s ease, transform 0.3s ease",
+  },
+  homeButtonHover: {
+    backgroundColor: "#405075",
+    transform: "scale(1.05)",
   },
 };
 
@@ -100,12 +115,14 @@ const InfoPanel = ({
   setGameCompleted,
   playAgain,
   setPlayAgain,
+  setShowGame,
 }) => {
   const [time, setTime] = useState(0);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
   const [gameInitialized, setGameInitialized] = useState(false);
+  const [hoverHomeButton, setHoverHomeButton] = useState(false); // State for hover effect
   const [hoverPlayAgain, setHoverPlayAgain] = useState(false);
   const [hoverShare, setHoverShare] = useState(false);
   const [copySelectedLetters, setCopySelectedLetters] = useState([]);
@@ -156,7 +173,10 @@ const InfoPanel = ({
 
     if (actualWords.includes(selectedWord)) {
       console.log("Word found:", selectedWord);
-      setGuessedWords((prevGuessedWords) => [...prevGuessedWords, selectedWord]);
+      setGuessedWords((prevGuessedWords) => [
+        ...prevGuessedWords,
+        selectedWord,
+      ]);
       setActualWords((prevWords) =>
         prevWords.filter((word) => word !== selectedWord)
       );
@@ -195,7 +215,9 @@ const InfoPanel = ({
   const handleShareClick = () => {
     const message =
       `Hey, Check out this fun game that helps you test your knowledge about food!\n` +
-      `It took me ${formatTime(time)} to complete the game. Let's see how much you can score!\n` +
+      `It took me ${formatTime(
+        time
+      )} to complete the game. Let's see how much you can score!\n` +
       `Here's the link: `;
     setShareMessage(message);
     setOpenShareDialog(true);
@@ -203,6 +225,10 @@ const InfoPanel = ({
 
   const handleLevelChange = (event) => {
     setLevel(event.target.value);
+  };
+
+  const handleClick = () => {
+    setShowGame(false);
   };
 
   return (
@@ -224,7 +250,7 @@ const InfoPanel = ({
         MenuProps={{
           PaperProps: {
             sx: {
-              '& .MuiMenu-list': {
+              "& .MuiMenu-list": {
                 paddingTop: 0,
                 paddingBottom: 0,
               },
@@ -253,6 +279,19 @@ const InfoPanel = ({
         ))}
       </Typography>
 
+      <Button
+        variant="contained"
+        style={{
+          ...styles.homeButton,
+          ...(hoverHomeButton ? styles.homeButtonHover : {}),
+        }}
+        onMouseEnter={() => setHoverHomeButton(true)}
+        onMouseLeave={() => setHoverHomeButton(false)}
+        onClick={handleClick}
+      >
+        Home
+      </Button>
+
       <Snackbar
         open={openSnackbar}
         autoHideDuration={3000}
@@ -273,7 +312,7 @@ const InfoPanel = ({
           onClose={handleCloseDialog}
           aria-labelledby="win-dialog-title"
           PaperProps={{ style: styles.dialogPaper }}
-          aria-hidden={!openDialog} 
+          aria-hidden={!openDialog}
           disableEnforceFocus
         >
           <DialogTitle id="win-dialog-title" style={styles.dialogTitle}>
@@ -325,7 +364,11 @@ const InfoPanel = ({
             {shareMessage}
           </Typography>
           <div
-            style={{ display: "flex", justifyContent: "space-between", gap: "20px" }}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: "20px",
+            }}
           >
             <WhatsappShareButton url={shareUrl} title={shareMessage}>
               <WhatsappIcon size={32} round />
@@ -348,7 +391,10 @@ const InfoPanel = ({
           </div>
         </DialogContent>
         <DialogActions style={styles.dialogActions}>
-          <Button onClick={() => setOpenShareDialog(false)} style={styles.button}>
+          <Button
+            onClick={() => setOpenShareDialog(false)}
+            style={styles.button}
+          >
             Close
           </Button>
         </DialogActions>

@@ -4,7 +4,7 @@ import { Grid, InfoPannel } from ".";
 
 import { generateGrid } from "../Utils/layoutGenerator";
 
-function Hero() {
+function Hero({ setShowGame }) {
   const [level, setLevel] = useState("easy");
   const [gameCompleted, setGameCompleted] = useState(false);
   const [selectedLetters, setSelectedLetters] = useState([]);
@@ -20,27 +20,30 @@ function Hero() {
   }, [level, gameCompleted, playAgain]);
 
   return (
-    <div className="hero-conatiner">
-      <div className="wrapper">
-        <Grid
-          gridData={grid}
-          selectedLetters={selectedLetters}
-          setSelectedLetters={setSelectedLetters}
-        />
-        <InfoPannel
-          level={level}
-          setLevel={setLevel}
-          selectedLetters={selectedLetters}
-          setSelectedLetters={setSelectedLetters}
-          actualWords={actualWords}
-          setActualWords={setActualWords}
-          gameCompleted={gameCompleted}
-          setGameCompleted={setGameCompleted}
-          playAgain={playAgain}
-          setPlayAgain={setPlayAgain}
-        />
+    <>
+      <div className="hero-conatiner">
+        <div className="wrapper">
+          <Grid
+            gridData={grid}
+            selectedLetters={selectedLetters}
+            setSelectedLetters={setSelectedLetters}
+          />
+          <InfoPannel
+            level={level}
+            setLevel={setLevel}
+            selectedLetters={selectedLetters}
+            setSelectedLetters={setSelectedLetters}
+            actualWords={actualWords}
+            setActualWords={setActualWords}
+            gameCompleted={gameCompleted}
+            setGameCompleted={setGameCompleted}
+            playAgain={playAgain}
+            setPlayAgain={setPlayAgain}
+            setShowGame={setShowGame}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
