@@ -26,10 +26,10 @@ function selectWords(level) {
   let numWords;
   switch (level.toLowerCase()) {
     case "hard":
-      numWords = 12;
+      numWords = 7;
       break;
     case "medium":
-      numWords = 6;
+      numWords = 5;
       break;
     case "easy":
     default:
@@ -47,16 +47,20 @@ function dfs(r, c, word, idx, grid) {
   if (!isValidPlacement(r, c, grid)) return false;
 
   grid[r][c] = word[idx];
-  console.log(`WTF row: ${r} col: ${c} letter: ${word[idx]}`);
+  console.log(`-> row: ${r} col: ${c} letter: ${word[idx]}`);
 
-  const directions = shuffleArray(Array.from({ length: dr.length }, (_, i) => i));
+  const directions = shuffleArray(
+    Array.from({ length: dr.length }, (_, i) => i)
+  );
 
   for (let j of directions) {
     const newR = r + dr[j];
     const newC = c + dc[j];
 
-    if (dfs(newR, newC, word, idx + 1, grid)) {
-      return true;
+    if (isValidPlacement(newR, newC, grid)) {
+      if (dfs(newR, newC, word, idx + 1, grid)) {
+        return true;
+      }
     }
   }
 
@@ -66,7 +70,7 @@ function dfs(r, c, word, idx, grid) {
 
 function placeWordsOnGrid(words, grid) {
   for (let word of words) {
-    console.log("WTF", word)
+    console.log("Word:", word);
     let wordPlaced = false;
     let attempts = 0;
 
@@ -103,5 +107,4 @@ export function generateGrid(level = "easy") {
   return { grid, selectedWords };
 }
 
-
-export default generateGrid()
+export default generateGrid();
