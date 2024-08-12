@@ -33,7 +33,7 @@ function selectWords(level) {
       break;
     case "easy":
     default:
-      numWords = 1;
+      numWords = 3;
       break;
   }
 
@@ -102,6 +102,7 @@ function fillEmptySpaces(grid) {
 export function generateGrid(level = "easy") {
   const grid = createEmptyGrid();
   const selectedWords = selectWords(level);
+  console.log("Actual words:", selectedWords);
   placeWordsOnGrid(selectedWords, grid);
   fillEmptySpaces(grid);
   return { grid, selectedWords };
