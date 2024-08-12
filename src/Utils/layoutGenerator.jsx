@@ -33,7 +33,7 @@ function selectWords(level) {
       break;
     case "easy":
     default:
-      numWords = 3;
+      numWords = 1;
       break;
   }
 
