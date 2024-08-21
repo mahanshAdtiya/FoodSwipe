@@ -5,7 +5,7 @@ function NavBar() {
     <div className='navbar-wrapper'>
       <div className='left'>
         <img className='logo' src='/img/logo.png' alt='Logo'/>
-        <h3>FoodSwipe</h3>
+        <h3>FoodWipe</h3>
       </div>
     </div>
   )
