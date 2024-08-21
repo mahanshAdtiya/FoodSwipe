@@ -1,0 +1,22 @@
+.navbar-wrapper{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    h3{
+        color: #D5B263;
+        font-size: 25px;
+        font-weight: 500;
+        margin: 20px 0;
+    }
+
+    .left{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        .logo{
+            height: 50px;
+        }
+    }
+}
