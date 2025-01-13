@@ -1,8 +1,8 @@
-@import "./navbar.scss";
-@import "./grid";
-@import "./infopannel";
-@import "./landingpage";
-@import "./rules";
+@use "./navbar.scss";
+@use "./grid";
+@use "./infopannel";
+@use "./landingpage";
+@use "./rules";
 
 .hero-conatiner {
   display: flex;
