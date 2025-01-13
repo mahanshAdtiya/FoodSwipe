@@ -129,7 +129,7 @@ const InfoPanel = ({
   const [guessedWords, setGuessedWords] = useState([]);
   const [openShareDialog, setOpenShareDialog] = useState(false);
   const [shareMessage, setShareMessage] = useState("Check out this link!");
-  const shareUrl = window.location.origin;
+  const shareUrl = window.location.href;
   const timerRef = useRef(null);
 
   const formatTime = (totalSeconds) => {
