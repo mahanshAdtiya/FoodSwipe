@@ -1,0 +1,52 @@
+.rules-container {
+  background-color: #293040;
+  color: gray;
+  padding-right: 20px;
+  margin: 20px;
+  min-width: 200px;
+  border-radius: 10px;
+  max-width: 300px;
+
+  .rules-title {
+    text-align: center;
+    color: white;
+  }
+
+  .rules-list {
+    color: white;
+  }
+
+  .rules-button {
+    background-color: #3c4a60;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 150px;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 80px;
+    margin-top: 40px;
+    font-weight: bold;
+    transition: "background-color 0.3s ease, transform 0.3s ease";
+  }
+
+  .rules-button:hover {
+    background-color: #405075;
+    scale: 1.05;
+  }
+
+  @media screen and (max-width: 910px) {
+    margin: 15px;
+    padding-right: 10px;
+    min-width: 150px;
+    max-width: 250px;
+
+    .rules-button {
+      padding: 8px;
+      width: 120px;
+      margin-left: 60px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+  }
+}

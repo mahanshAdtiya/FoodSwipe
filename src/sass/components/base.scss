@@ -1,0 +1,27 @@
+@use "./navbar.scss";
+@use "./grid";
+@use "./infopannel";
+@use "./landingpage";
+@use "./rules";
+
+.hero-conatiner {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    @media screen and (max-width: 480px) {
+      gap: 10px;
+    }
+  }
+}
